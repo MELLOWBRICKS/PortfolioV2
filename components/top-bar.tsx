@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { Github, Linkedin, FileText, Mail, Twitter } from "lucide-react"
+import { Github, Linkedin, FileText, Mail, Twitter, Globe } from "lucide-react"
 
 interface TopBarProps {
   time: Date
@@ -55,7 +55,7 @@ const TopBar: React.FC<TopBarProps> = ({ time }) => {
             rel="noopener noreferrer"
             className="flex items-center hover:text-ctp-blue transition-colors"
           >
-            <Twitter className="w-4 h-4 mr-1" />
+            <Globe className="w-4 h-4 mr-1" />
             <span className="hidden sm:inline">Website</span>
           </a>
         </div>
