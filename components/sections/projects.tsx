@@ -1,0 +1,58 @@
+"use client"
+
+import type React from "react"
+import { useMobile } from "@/hooks/use-mobile"
+
+export const ProjectsSection: React.FC = () => {
+  const isMobile = useMobile()
+  const textSize = isMobile ? "text-sm" : ""
+
+  return (
+    <div className="space-y-4">
+      <div className="text-ctp-mauve font-bold text-lg">Projects</div>
+
+      <div className="border-l-2 border-ctp-green pl-4 py-1">
+        <div className="text-ctp-green font-bold">Computer Association Website</div>
+        <div className={`text-ctp-subtext0 ${isMobile ? "text-xs" : "text-sm"}`}>Java, MySQL</div>
+        <div className={`text-ctp-text mt-1 ${textSize}`}>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>
+              Developed a high-performance website using Java and MySQL, resulting in faster load times and increased
+              user engagement.
+            </li>
+            <li>Demonstrated back-end optimization and front-end responsiveness in a production environment.</li>
+          </ul>
+        </div>
+        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}>github.com/mellowbricks</div>
+      </div>
+
+      <div className="border-l-2 border-ctp-green pl-4 py-1">
+        <div className="text-ctp-green font-bold">Computer Association ChatBot (CA-ChatBot)</div>
+        <div className={`text-ctp-subtext0 ${isMobile ? "text-xs" : "text-sm"}`}>Groq LLM, Python, GitHub Actions</div>
+        <div className={`text-ctp-text mt-1 ${textSize}`}>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>Built an intelligent ChatBot using Groq LLM and Python.</li>
+            <li>Deployed using CI/CD pipelines via GitHub Actions on the render platform.</li>
+          </ul>
+        </div>
+        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}>github.com/mellowbricks</div>
+      </div>
+
+      <div className="border-l-2 border-ctp-green pl-4 py-1">
+        <div className="text-ctp-green font-bold">Personal Portfolio Website</div>
+        <div className={`text-ctp-subtext0 ${isMobile ? "text-xs" : "text-sm"}`}>Next.js, React, Tailwind CSS</div>
+        <div className={`text-ctp-text mt-1 ${textSize}`}>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>
+              Created an interactive Linux-themed portfolio website showcasing my skills, projects, and experience.
+            </li>
+            <li>
+              Implemented realistic terminal functionality with commands, window management, and responsive design.
+            </li>
+          </ul>
+        </div>
+        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}>mellowbricks.co.in</div>
+      </div>
+    </div>
+  )
+}
