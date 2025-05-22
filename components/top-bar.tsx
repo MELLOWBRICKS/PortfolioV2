@@ -28,7 +28,7 @@ const TopBar: React.FC<TopBarProps> = ({ time }) => {
             <span className="hidden sm:inline">GitHub</span>
           </a>
           <a
-            href="https://linkedin.com/melbinkuriakose"
+            href="https://linkedin.com/in/melbinkuriakose"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center hover:text-ctp-blue transition-colors"
