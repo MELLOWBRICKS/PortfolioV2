@@ -6,9 +6,9 @@ import "./globals.css"
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Linux Portfolio",
-  description: "A Linux desktop-themed portfolio website",
-    generator: 'v0.dev'
+  title: "PortfoliOS",
+  description: "Welcome to Linux based portfolio",
+    generator: ''
 }
 
 export default function RootLayout({

@@ -49,7 +49,7 @@ const Desktop = forwardRef<HTMLDivElement, DesktopProps>(({ children }, ref) => 
               <h2 className="text-lg md:text-xl font-bold text-ctp-peach mb-1 md:mb-2">Window Controls</h2>
               <ul className="space-y-0.5 md:space-y-1 text-sm md:text-base">
                 <li>Drag title bar to move window</li>
-                <li>Drag corner to resize window</li>
+                <li>Drag right bottom corner to resize window</li>
                 <li>Red button to close</li>
                 <li>Yellow button to minimize</li>
                 <li>Green button to maximize</li>
