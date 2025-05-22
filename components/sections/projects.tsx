@@ -23,7 +23,7 @@ export const ProjectsSection: React.FC = () => {
             <li>Demonstrated back-end optimization and front-end responsiveness in a production environment.</li>
           </ul>
         </div>
-        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}>github.com/mellowbricks</div>
+        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}><a href="">GitHub Link</a></div>
       </div>
 
       <div className="border-l-2 border-ctp-green pl-4 py-1">
@@ -35,24 +35,9 @@ export const ProjectsSection: React.FC = () => {
             <li>Deployed using CI/CD pipelines via GitHub Actions on the render platform.</li>
           </ul>
         </div>
-        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}>github.com/mellowbricks</div>
+        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}><a href="">Try it out here</a></div>
       </div>
 
-      <div className="border-l-2 border-ctp-green pl-4 py-1">
-        <div className="text-ctp-green font-bold">Personal Portfolio Website</div>
-        <div className={`text-ctp-subtext0 ${isMobile ? "text-xs" : "text-sm"}`}>Next.js, React, Tailwind CSS</div>
-        <div className={`text-ctp-text mt-1 ${textSize}`}>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>
-              Created an interactive Linux-themed portfolio website showcasing my skills, projects, and experience.
-            </li>
-            <li>
-              Implemented realistic terminal functionality with commands, window management, and responsive design.
-            </li>
-          </ul>
-        </div>
-        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}>mellowbricks.co.in</div>
-      </div>
     </div>
   )
 }
