@@ -1,24 +1,55 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { JetBrains_Mono } from "next/font/google"
-import "./globals.css"
+// import type React from "react"
+// import type { Metadata } from "next"
+// import { JetBrains_Mono } from "next/font/google"
+// import "./globals.css"
 
-const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] })
+// const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] })
+
+// export const metadata: Metadata = {
+//   title: "PortfoliOS",
+//   description: "Welcome to Linux based portfolio",
+//     generator: ''
+// }
+
+// export default function RootLayout({
+//   children,
+// }: Readonly<{
+//   children: React.ReactNode
+// }>) {
+//   return (
+//     <html lang="en">
+//       <body className={jetbrainsMono.className}>{children}</body>
+//     </html>
+//   )
+// }
+
+
+import type { Metadata } from "next";
+import { JetBrains_Mono } from "next/font/google";
+import "@/app/globals.css"; // Ensure correct path
+
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "PortfoliOS",
   description: "Welcome to Linux based portfolio",
-    generator: ''
-}
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="icon"
+          href="/linux-portfolio/logo.png" // ✔ Use full path due to `basePath`
+          type="image/x-icon"
+        />
+      </head>
       <body className={jetbrainsMono.className}>{children}</body>
     </html>
-  )
+  );
 }
