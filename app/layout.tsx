@@ -45,7 +45,7 @@ export default function RootLayout({
       <head>
         <link
           rel="icon"
-          href="/linux-portfolio/logo.png" // ✔ Use full path due to `basePath`
+          href="/logo.png"
           type="image/x-icon"
         />
       </head>
