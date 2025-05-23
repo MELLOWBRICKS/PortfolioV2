@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { Github, Linkedin, FileText, Mail, Twitter, Globe } from "lucide-react"
+import { Github, Linkedin, FileText, Mail, Globe } from "lucide-react"
 
 interface TopBarProps {
   time: Date
