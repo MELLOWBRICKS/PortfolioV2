@@ -50,7 +50,7 @@ const TopBar: React.FC<TopBarProps> = ({ time }) => {
             <span className="hidden sm:inline">Email</span>
           </a>
           <a
-            href="https://mellowbricks.co.in"
+            href="https://mellowbricks.github.io/Portfolio/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center hover:text-ctp-blue transition-colors"
