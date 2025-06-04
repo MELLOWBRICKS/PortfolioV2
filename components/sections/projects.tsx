@@ -23,7 +23,7 @@ export const ProjectsSection: React.FC = () => {
             <li>Demonstrated back-end optimization and front-end responsiveness in a production environment.</li>
           </ul>
         </div>
-        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}><a href="">GitHub Link</a></div>
+        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}><a href="https://github.com/MELLOWBRICKS/CA-Website">GitHub Link</a></div>
       </div>
 
       <div className="border-l-2 border-ctp-green pl-4 py-1">
@@ -35,7 +35,7 @@ export const ProjectsSection: React.FC = () => {
             <li>Deployed using CI/CD pipelines via GitHub Actions on the render platform.</li>
           </ul>
         </div>
-        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}><a href="">Try it out here</a></div>
+        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}><a href="https://ca-chatbot-dof8.onrender.com/">Try it out here</a></div>
       </div>
 
     </div>
