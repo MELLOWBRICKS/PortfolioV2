@@ -25,8 +25,6 @@ export const AboutSection: React.FC = () => {
             <h3 className="text-ctp-blue font-bold">Languages</h3>
             <ul className="list-disc pl-5 mt-1 space-y-1">
               <li>Python</li>
-              <li>Java</li>
-              <li>SQL</li>
               <li>Shell-Scripting</li>
             </ul>
           </div>
@@ -43,8 +41,7 @@ export const AboutSection: React.FC = () => {
             <ul className="list-disc pl-5 mt-1 space-y-1">
               <li>Figma, Illustrator</li>
               <li>GitHub, Linux</li>
-              <li>Docker, Terraform, Jenkins</li>
-              <li>AWS</li>
+              <li>AWS, GCP</li>
             </ul>
           </div>
           <div className="bg-ctp-surface0 p-2 rounded-xl">
@@ -54,6 +51,7 @@ export const AboutSection: React.FC = () => {
               <li>Creative Thinking</li>
               <li>Teamwork</li>
               <li>Communication</li>
+              <li>Time Management</li>
             </ul>
           </div>
         </div>

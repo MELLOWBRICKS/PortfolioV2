@@ -15,12 +15,12 @@ interface TerminalProps {
   isActive: boolean
   isMaximized: boolean
   isMobile: boolean
-  onActivate: () => void
-  onClose: () => void
-  onMinimize: () => void
-  onMaximize: () => void
-  onUpdatePosition: (position: { x: number; y: number }) => void
-  onUpdateSize: (size: { width: number; height: number }) => void
+  onActivate: (id: string) => void
+  onClose: (id: string) => void
+  onMinimize: (id: string) => void
+  onMaximize: (id: string) => void
+  onUpdatePosition: (id: string, position: { x: number; y: number }) => void
+  onUpdateSize: (id: string, size: { width: number; height: number }) => void
 }
 
 const Terminal: React.FC<TerminalProps> = ({
@@ -49,7 +49,6 @@ const Terminal: React.FC<TerminalProps> = ({
   const [terminalContent, setTerminalContent] = useState<React.ReactNode>(children)
   const [inputValue, setInputValue] = useState("")
   const inputRef = useRef<HTMLInputElement>(null)
-  const [touchStartPos, setTouchStartPos] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
     setTerminalContent(children)
@@ -66,11 +65,11 @@ const Terminal: React.FC<TerminalProps> = ({
       if (isDragging && !isMaximized) {
         const newX = e.clientX - dragOffset.x
         const newY = e.clientY - dragOffset.y
-        onUpdatePosition({ x: newX, y: newY })
+        onUpdatePosition(id, { x: newX, y: newY })
       } else if (isResizing && !isMaximized) {
         const newWidth = resizeStart.width + (e.clientX - resizeStart.x)
         const newHeight = resizeStart.height + (e.clientY - resizeStart.y)
-        onUpdateSize({
+        onUpdateSize(id, {
           width: Math.max(300, newWidth),
           height: Math.max(200, newHeight),
         })
@@ -91,11 +90,11 @@ const Terminal: React.FC<TerminalProps> = ({
       document.removeEventListener("mousemove", handleMouseMove)
       document.removeEventListener("mouseup", handleMouseUp)
     }
-  }, [isDragging, isResizing, dragOffset, resizeStart, onUpdatePosition, onUpdateSize, isMaximized])
+  }, [isDragging, isResizing, dragOffset, resizeStart, onUpdatePosition, onUpdateSize, isMaximized, id])
 
-  const handleMouseDown = (e: React.MouseEvent) => {
+  const handleMouseDown = () => {
     if (!isActive) {
-      onActivate()
+      onActivate(id)
     }
   }
 
@@ -109,44 +108,7 @@ const Terminal: React.FC<TerminalProps> = ({
     })
   }
 
-  const handleTitleBarTouchStart = (e: React.TouchEvent) => {
-    if (isMaximized) return
-    e.preventDefault()
-    const touch = e.touches[0]
-    setTouchStartPos({
-      x: touch.clientX,
-      y: touch.clientY,
-    })
-    setIsDragging(true)
-    setDragOffset({
-      x: touch.clientX - position.x,
-      y: touch.clientY - position.y,
-    })
-  }
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (isDragging && !isMaximized) {
-      const touch = e.touches[0]
-      const newX = touch.clientX - dragOffset.x
-      const newY = touch.clientY - dragOffset.y
-      onUpdatePosition({ x: newX, y: newY })
-    } else if (isResizing && !isMaximized) {
-      const touch = e.touches[0]
-      const newWidth = resizeStart.width + (touch.clientX - resizeStart.x)
-      const newHeight = resizeStart.height + (touch.clientY - resizeStart.y)
-      onUpdateSize({
-        width: Math.max(300, newWidth),
-        height: Math.max(200, newHeight),
-      })
-    }
-  }
-
-  const handleTouchEnd = () => {
-    setIsDragging(false)
-    setIsResizing(false)
-  }
-
-  const handleResizeMouseDown = (e: React.MouseEvent) => {
+  const handleResizeMouseDown = (e: React.MouseEvent, direction: string) => {
     if (isMaximized) return
     e.preventDefault()
     e.stopPropagation()
@@ -156,37 +118,64 @@ const Terminal: React.FC<TerminalProps> = ({
       y: e.clientY,
       width: size.width,
       height: size.height,
+      direction,
     })
   }
 
-  const handleResizeTouchStart = (e: React.TouchEvent) => {
-    if (isMaximized) return
-    e.preventDefault()
-    e.stopPropagation()
-    const touch = e.touches[0]
-    setIsResizing(true)
-    setResizeStart({
-      x: touch.clientX,
-      y: touch.clientY,
-      width: size.width,
-      height: size.height,
-    })
-  }
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isDragging && !isMaximized) {
+        const newX = e.clientX - dragOffset.x
+        const newY = e.clientY - dragOffset.y
+        onUpdatePosition(id, { x: newX, y: newY })
+      } else if (isResizing && !isMaximized) {
+        const dx = e.clientX - resizeStart.x
+        const dy = e.clientY - resizeStart.y
 
-  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      e.preventDefault()
-      const command = inputValue.trim()
-      setInputValue("")
+        let newWidth = resizeStart.width
+        let newHeight = resizeStart.height
+        let newX = position.x
+        let newY = position.y
 
-      if (command) {
-        const output = executeCommand(command, id)
-        if (output) {
-          setTerminalContent(output)
+        if (resizeStart.direction.includes("right")) {
+          newWidth = resizeStart.width + dx
         }
+        if (resizeStart.direction.includes("left")) {
+          newWidth = resizeStart.width - dx
+          newX = position.x + dx
+        }
+
+        if (resizeStart.direction.includes("bottom")) {
+          newHeight = resizeStart.height + dy
+        }
+        if (resizeStart.direction.includes("top")) {
+          newHeight = resizeStart.height - dy
+          newY = position.y + dy
+        }
+
+        onUpdateSize(id, {
+          width: Math.max(300, newWidth),
+          height: Math.max(200, newHeight),
+        })
+        onUpdatePosition(id, { x: newX, y: newY })
       }
     }
-  }
+
+    const handleMouseUp = () => {
+      setIsDragging(false)
+      setIsResizing(false)
+    }
+
+    if (isDragging || isResizing) {
+      document.addEventListener("mousemove", handleMouseMove)
+      document.addEventListener("mouseup", handleMouseUp)
+    }
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove)
+      document.removeEventListener("mouseup", handleMouseUp)
+    }
+  }, [isDragging, isResizing, dragOffset, resizeStart, onUpdatePosition, onUpdateSize, isMaximized, id, position])
 
   return (
     <div
@@ -200,32 +189,54 @@ const Terminal: React.FC<TerminalProps> = ({
         zIndex,
       }}
       onMouseDown={handleMouseDown}
-      onTouchStart={handleMouseDown}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
     >
+      {/* Resize handles */}
+      {!isMaximized && (
+        <>
+          <div
+            className="absolute top-0 right-0 w-2 h-full cursor-ew-resize"
+            onMouseDown={(e) => handleResizeMouseDown(e, "right")}
+          />
+          <div
+            className="absolute bottom-0 left-0 w-full h-2 cursor-ns-resize"
+            onMouseDown={(e) => handleResizeMouseDown(e, "bottom")}
+          />
+          <div
+            className="absolute top-0 right-0 w-4 h-4 cursor-nesw-resize"
+            onMouseDown={(e) => handleResizeMouseDown(e, "top-right")}
+          />
+          <div
+            className="absolute bottom-0 left-0 w-4 h-4 cursor-nesw-resize"
+            onMouseDown={(e) => handleResizeMouseDown(e, "bottom-left")}
+          />
+          <div
+            className="absolute bottom-0 right-0 w-4 h-4 cursor-nwse-resize"
+            onMouseDown={(e) => handleResizeMouseDown(e, "bottom-right")}
+          />
+        </>
+      )}
+
       {/* Title bar */}
       <div
         className={`h-8 flex items-center px-2 ${isActive ? "bg-ctp-surface0" : "bg-ctp-surface1"} rounded-t-xl`}
         onMouseDown={handleTitleBarMouseDown}
-        onTouchStart={handleTitleBarTouchStart}
       >
         <div className="flex space-x-2 mr-2">
           <button
-            className="w-3 h-3 rounded-full bg-ctp-red hover:bg-ctp-red/80 flex items-center justify-center"
-            onClick={onClose}
+            className={`rounded-full ${isMobile ? "w-4 h-4" : "w-3 h-3"} bg-ctp-red hover:bg-ctp-red/80 flex items-center justify-center`}
+            onClick={() => onClose(id)}
           >
             <X className="w-2 h-2 text-ctp-base opacity-0 hover:opacity-100" />
           </button>
           <button
-            className="w-3 h-3 rounded-full bg-ctp-yellow hover:bg-ctp-yellow/80 flex items-center justify-center"
-            onClick={onMinimize}
+            className={`rounded-full ${isMobile ? "w-4 h-4" : "w-3 h-3"} bg-ctp-yellow hover:bg-ctp-yellow/80 flex items-center justify-center`}
+            onClick={() => onMinimize(id)}
           >
             <Minus className="w-2 h-2 text-ctp-base opacity-0 hover:opacity-100" />
           </button>
           <button
-            className="w-3 h-3 rounded-full bg-ctp-green hover:bg-ctp-green/80 flex items-center justify-center"
-            onClick={onMaximize}
+            className={`rounded-full ${isMobile ? "w-4 h-4" : "w-3 h-3"} bg-ctp-green hover:bg-ctp-green/80 flex items-center justify-center`}
+            onClick={() => onMaximize(id)}
           >
             {isMaximized ? (
               <Minimize2 className="w-2 h-2 text-ctp-base opacity-0 hover:opacity-100" />
@@ -247,23 +258,25 @@ const Terminal: React.FC<TerminalProps> = ({
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={handleInputKeyDown}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault()
+                const command = inputValue.trim()
+                setInputValue("")
+
+                if (command) {
+                  const output = executeCommand(command, id)
+                  if (output) {
+                    setTerminalContent(output)
+                  }
+                }
+              }
+            }}
             className="flex-1 bg-transparent outline-none border-none text-ctp-text"
             autoFocus={isActive}
           />
         </div>
       </div>
-
-      {/* Resize handle */}
-      {!isMaximized && (
-        <div
-          className="absolute bottom-0 right-0 w-6 h-6 cursor-nwse-resize"
-          onMouseDown={handleResizeMouseDown}
-          onTouchStart={handleResizeTouchStart}
-        >
-          <div className="w-0 h-0 border-t-8 border-l-8 border-transparent border-t-ctp-surface0 transform rotate-45 translate-x-1 translate-y-1" />
-        </div>
-      )}
     </div>
   )
 }

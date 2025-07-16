@@ -37,10 +37,16 @@ body {
   overflow: hidden;
   background-color: var(--ctp-base);
   color: var(--ctp-text);
+  touch-action: manipulation; /* Prevent default touch behaviors like double-tap zoom */
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* Prevent zooming on input focus for mobile */
+input[type="text"], textarea {
+  font-size: 16px; /* A common size that prevents mobile browsers from zooming */
 }
 
 ::-webkit-scrollbar {

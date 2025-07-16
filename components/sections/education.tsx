@@ -27,6 +27,7 @@ export const EducationSection: React.FC = () => {
       <div className="border-l-2 border-ctp-blue pl-4 py-1">
         <div className="text-ctp-blue font-bold">Certifications</div>
         <ul className={`list-disc pl-5 mt-1 space-y-1 text-ctp-text ${textSize}`}>
+          <li>Deloitte Australia - Technology Job Simulation (Forage) - June 2025</li>
           <li>The Web Developer Bootcamp (Udemy) - September 2024</li>
           <li>Accenture: Data Analytics and Visualization Job Simulation (Forage) - April 2024</li>
           <li>Complete Python Developer: Zero to Mastery (Udemy) - October 2023</li>

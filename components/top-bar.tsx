@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import { useEffect, useState } from "react"
 import { Github, Linkedin, FileText, Mail, Globe } from "lucide-react"
 
 interface TopBarProps {
@@ -8,10 +9,16 @@ interface TopBarProps {
 }
 
 const TopBar: React.FC<TopBarProps> = ({ time }) => {
-  const formattedTime = time.toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-  })
+  const [formattedTime, setFormattedTime] = useState("")
+
+  useEffect(() => {
+    setFormattedTime(
+      time.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+    )
+  }, [time])
 
   return (
     <div className="h-10 bg-ctp-crust text-ctp-text flex items-center justify-between px-4 text-xs rounded-b-xl">

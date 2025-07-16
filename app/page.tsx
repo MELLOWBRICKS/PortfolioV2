@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useCallback } from "react"
 import Desktop from "@/components/desktop"
 import Terminal from "@/components/terminal"
 import Dock from "@/components/dock"
@@ -14,7 +14,6 @@ import { ExperienceSection } from "@/components/sections/experience"
 import { ContactForm } from "@/components/sections/contact"
 import { useMobile } from "@/hooks/use-mobile"
 import { AboutSection } from "@/components/sections/about"
-
 export default function Home() {
   const [terminals, setTerminals] = useState<
     Array<{
@@ -36,8 +35,10 @@ export default function Home() {
   const [time, setTime] = useState(new Date())
   const desktopRef = useRef<HTMLDivElement>(null)
   const isMobile = useMobile()
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     // Initialize with no terminals open
     setTerminals([])
 
@@ -70,10 +71,14 @@ export default function Home() {
     const desktopWidth = desktopRef.current.clientWidth
     const desktopHeight = desktopRef.current.clientHeight
 
-    return {
-      width: isMobile ? Math.min(320, desktopWidth - 20) : 600,
-      height: isMobile ? Math.min(400, desktopHeight - 100) : 400,
-    }
+    const width = isMobile
+      ? Math.min(320, desktopWidth - 20)
+      : Math.floor(Math.random() * (800 - 500 + 1)) + 500
+    const height = isMobile
+      ? Math.min(400, desktopHeight - 100)
+      : Math.floor(Math.random() * (600 - 300 + 1)) + 300
+
+    return { width, height }
   }
 
   const activateTerminal = (id: string) => {
@@ -177,20 +182,23 @@ export default function Home() {
       const centerPosition = getCenterPosition()
       const terminalSize = getTerminalSize()
 
-      setTerminals((prev) => [
-        ...prev,
-        {
-          id,
-          title,
-          content,
-          position: centerPosition,
-          size: terminalSize,
-          zIndex: highestZIndex + 1,
-          isActive: true,
-          isMinimized: false,
-          isMaximized: false,
-        },
-      ])
+      const newTerminal = {
+        id,
+        title,
+        content,
+        position: centerPosition,
+        size: terminalSize,
+        zIndex: highestZIndex + 1,
+        isActive: true,
+        isMinimized: false,
+        isMaximized: false,
+      }
+
+      setTerminals((prev) => [...prev, newTerminal])
+
+      if (isMobile) {
+        maximizeTerminal(id)
+      }
     }
 
     setHighestZIndex(highestZIndex + 1)
@@ -221,12 +229,12 @@ export default function Home() {
                 zIndex={terminal.zIndex}
                 isActive={terminal.isActive}
                 isMaximized={terminal.isMaximized}
-                onActivate={() => activateTerminal(terminal.id)}
-                onClose={() => closeTerminal(terminal.id)}
-                onMinimize={() => minimizeTerminal(terminal.id)}
-                onMaximize={() => maximizeTerminal(terminal.id)}
-                onUpdatePosition={(position) => updateTerminalPosition(terminal.id, position)}
-                onUpdateSize={(size) => updateTerminalSize(terminal.id, size)}
+                onActivate={activateTerminal}
+                onClose={closeTerminal}
+                onMinimize={minimizeTerminal}
+                onMaximize={maximizeTerminal}
+                onUpdatePosition={updateTerminalPosition}
+                onUpdateSize={updateTerminalSize}
                 isMobile={isMobile}
               >
                 {terminal.content}
