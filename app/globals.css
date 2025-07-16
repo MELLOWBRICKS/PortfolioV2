@@ -37,9 +37,8 @@ body {
   overflow: hidden;
   background-color: var(--ctp-base);
   color: var(--ctp-text);
-  touch-action: manipulation; /* Prevent default touch behaviors like double-tap zoom */
+  touch-action: manipulation;
 }
-
 * {
   box-sizing: border-box;
 }
