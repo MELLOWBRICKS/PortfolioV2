@@ -63,7 +63,7 @@ export const ExperienceSection: React.FC = () => {
       <div className="border-l-2 border-ctp-peach pl-4 py-1">
         <div className="text-ctp-peach font-bold">Linux Admin Intern</div>
         <div className={`text-ctp-text ${textSize}`}>CoreXtech IT Services Pvt. Ltd, Remote</div>
-        <div className={`text-ctp-subtext0 ${isMobile ? "text-xs" : "text-sm"}`}>April 2025 – Present</div>
+        <div className={`text-ctp-subtext0 ${isMobile ? "text-xs" : "text-sm"}`}>April 2025 – July 2025</div>
         <div className={`text-ctp-text mt-1 ${textSize}`}>
           <ul className="list-disc pl-5 space-y-1">
             <li>
