@@ -249,8 +249,10 @@ const Terminal: React.FC<TerminalProps> = ({
       </div>
 
       {/* Terminal content */}
-      <div className="flex-1 bg-ctp-mantle text-ctp-text p-2 overflow-auto font-mono text-sm">
-        {terminalContent}
+      <div className="flex-1 bg-ctp-mantle text-ctp-text p-2 overflow-auto font-mono text-sm flex flex-col">
+        <div className="flex-1">
+          {terminalContent}
+        </div>
         <div className="flex mt-2">
           <span className="text-ctp-green mr-1 whitespace-nowrap">melbin@portfolio:~$</span>
           <input

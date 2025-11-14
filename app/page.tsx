@@ -175,6 +175,9 @@ export default function Home() {
         case "contact":
           content = <ContactForm />
           break
+        case "terminal":
+          content = <div className="text-ctp-text">Welcome to the terminal! Type commands here.</div>
+          break
         default:
           content = <div>Terminal</div>
       }

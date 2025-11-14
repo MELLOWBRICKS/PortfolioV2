@@ -26,6 +26,8 @@ const Dock: React.FC<DockProps> = ({ terminals, onTerminalClick, isMobile }) => 
         return <Briefcase className="w-5 h-5" />
       case "contact":
         return <Mail className="w-5 h-5" />
+      case "terminal":
+        return <Terminal className="w-5 h-5" />
       default:
         return <Terminal className="w-5 h-5" />
     }
@@ -41,7 +43,7 @@ const Dock: React.FC<DockProps> = ({ terminals, onTerminalClick, isMobile }) => 
 
   return (
     <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-ctp-surface0/80 backdrop-blur-md rounded-2xl p-2 flex space-x-2">
-      {["about", "projects", "education", "experience", "contact"].map((id) => {
+      {["about", "projects", "education", "experience", "contact", "terminal"].map((id) => {
         const terminal = terminals.find((t) => t.id === id)
         const isActive = terminal && !terminal.isMinimized
 
