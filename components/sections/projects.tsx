@@ -38,6 +38,42 @@ export const ProjectsSection: React.FC = () => {
         <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}><a href="https://ca-chatbot-dof8.onrender.com/">CA-ChatBot</a></div>
       </div>
 
+      <div className="border-l-2 border-ctp-green pl-4 py-1">
+        <div className="text-ctp-green font-bold">Infrastructure Automation with Terraform</div>
+        <div className={`text-ctp-subtext0 ${isMobile ? "text-xs" : "text-sm"}`}>Terraform, AWS, VPC, EC2, ECS, RDS, ALB</div>
+        <div className={`text-ctp-text mt-1 ${textSize}`}>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>Built a highly available AWS infrastructure using Terraform, including VPC, EC2, ECS, RDS, and ALB across multiple Availability Zones for fault tolerance.</li>
+            <li>Secured application and database tiers with private subnets, NAT, and security groups, ensuring least-privilege access and enabled auto-scaling.</li>
+          </ul>
+        </div>
+        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}>GitHub Link</div>
+      </div>
+
+      <div className="border-l-2 border-ctp-green pl-4 py-1">
+        <div className="text-ctp-green font-bold">Ansible Node.js Deployment</div>
+        <div className={`text-ctp-subtext0 ${isMobile ? "text-xs" : "text-sm"}`}>Ansible, Node.js, Ubuntu, IaC</div>
+        <div className={`text-ctp-text mt-1 ${textSize}`}>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>Systematized provisioning and configuration of Ubuntu with Ansible, enabling consistent and repeatable development environments.</li>
+            <li>Deployed IaC-driven delivery for a Node.js service using Ansible on Ubuntu, enabling consistent builds and predictable deployments.</li>
+          </ul>
+        </div>
+        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}>GitHub Link</div>
+      </div>
+
+      <div className="border-l-2 border-ctp-green pl-4 py-1">
+        <div className="text-ctp-green font-bold">Jenkins Automated Deployment</div>
+        <div className={`text-ctp-subtext0 ${isMobile ? "text-xs" : "text-sm"}`}>Jenkins, Java, CI/CD, Nexus, EC2</div>
+        <div className={`text-ctp-text mt-1 ${textSize}`}>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>Orchestrated a CI/CD pipeline using Jenkins for Java applications, integrating secure credential management, artifact deployment to Nexus, and SSH-based remote execution on EC2 with post-build triggers.</li>
+            <li>Reduced deployment time from 15 minutes to under 2 minutes through zero-touch automation, significantly improving efficiency and reliability.</li>
+          </ul>
+        </div>
+        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}>GitHub Link</div>
+      </div>
+
     </div>
   )
 }
