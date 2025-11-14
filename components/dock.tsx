@@ -31,6 +31,14 @@ const Dock: React.FC<DockProps> = ({ terminals, onTerminalClick, isMobile }) => 
     }
   }
 
+  const handleClick = (id: string) => {
+    if (id === "projects") {
+      window.open("https://projects.mellowbricks.co.in", "_blank")
+    } else {
+      onTerminalClick(id)
+    }
+  }
+
   return (
     <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-ctp-surface0/80 backdrop-blur-md rounded-2xl p-2 flex space-x-2">
       {["about", "projects", "education", "experience", "contact"].map((id) => {
@@ -43,7 +51,7 @@ const Dock: React.FC<DockProps> = ({ terminals, onTerminalClick, isMobile }) => 
             className={`${isMobile ? "w-9 h-9" : "w-10 h-10"} rounded-xl flex items-center justify-center transition-all duration-200 ${
               isActive ? "bg-ctp-surface2 shadow-md" : "bg-ctp-surface1 hover:bg-ctp-surface2"
             }`}
-            onClick={() => onTerminalClick(id)}
+            onClick={() => handleClick(id)}
           >
             <div className={`${isActive ? "text-ctp-text" : "text-ctp-subtext0"}`}>{getIconForTerminal(id)}</div>
           </button>

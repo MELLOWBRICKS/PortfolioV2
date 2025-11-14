@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useEffect, useState } from "react"
-import { Github, Linkedin, FileText, Mail, Globe } from "lucide-react"
+import { Github, Linkedin, FileText, Mail } from "lucide-react"
 
 interface TopBarProps {
   time: Date
@@ -55,15 +55,6 @@ const TopBar: React.FC<TopBarProps> = ({ time }) => {
           <a href="mailto:melbinmk04@gmail.com" className="flex items-center hover:text-ctp-blue transition-colors">
             <Mail className="w-4 h-4 mr-1" />
             <span className="hidden sm:inline">Email</span>
-          </a>
-          <a
-            href="https://mellowbricks.github.io/Portfolio/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center hover:text-ctp-blue transition-colors"
-          >
-            <Globe className="w-4 h-4 mr-1" />
-            <span className="hidden sm:inline">Website</span>
           </a>
         </div>
       </div>

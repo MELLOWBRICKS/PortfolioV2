@@ -14,7 +14,7 @@ export const EducationSection: React.FC = () => {
       <div className="border-l-2 border-ctp-blue pl-4 py-1">
         <div className="text-ctp-blue font-bold">Postgraduate Diploma in DevOps & Cloud Computing</div>
         <div className={`text-ctp-text ${textSize}`}>DevOps Institute Mumbai, Thane, Maharashtra</div>
-        <div className={`text-ctp-subtext0 ${isMobile ? "text-xs" : "text-sm"}`}>April 2025 – Present</div>
+        <div className={`text-ctp-subtext0 ${isMobile ? "text-xs" : "text-sm"}`}>April 2025 – November 2025</div>
       </div>
 
       <div className="border-l-2 border-ctp-blue pl-4 py-1">
