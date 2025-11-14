@@ -47,7 +47,7 @@ export const ProjectsSection: React.FC = () => {
             <li>Secured application and database tiers with private subnets, NAT, and security groups, ensuring least-privilege access and enabled auto-scaling.</li>
           </ul>
         </div>
-        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}>GitHub Link</div>
+        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}><a href="https://github.com/MELLOWBRICKS/AWS-Infra-with-Terraform">GitHub Link</a></div>
       </div>
 
       <div className="border-l-2 border-ctp-green pl-4 py-1">
@@ -59,7 +59,7 @@ export const ProjectsSection: React.FC = () => {
             <li>Deployed IaC-driven delivery for a Node.js service using Ansible on Ubuntu, enabling consistent builds and predictable deployments.</li>
           </ul>
         </div>
-        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}>GitHub Link</div>
+        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}><a href="https://github.com/MELLOWBRICKS/Vagrant-Ansible-Node.js-Deployment">GitHub Link</a></div>
       </div>
 
       <div className="border-l-2 border-ctp-green pl-4 py-1">
@@ -71,7 +71,7 @@ export const ProjectsSection: React.FC = () => {
             <li>Reduced deployment time from 15 minutes to under 2 minutes through zero-touch automation, significantly improving efficiency and reliability.</li>
           </ul>
         </div>
-        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}>GitHub Link</div>
+        <div className={`text-ctp-blue ${isMobile ? "text-xs" : "text-sm"} mt-1`}><a href="https://github.com/MELLOWBRICKS/Jenkins-Automated-Deployment">GitHub Link</a></div>
       </div>
 
     </div>
